@@ -47,6 +47,12 @@ enum custom_keycodes {
   DOT,
   COMMA,
 
+  S_QUOT,
+  S_SLASH,
+  S_DOT,
+  S_COMMA,
+  S_MINUS,
+
   PLUS_EQ,
 };
 
@@ -70,11 +76,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_ESC,  ONE,     TWO,     THREE,   FOUR,    FIVE,                               SIX,     SEVEN,   EIGHT,   NINE,    ZERO,    KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TAB,  FR_F,    FR_L,    FR_H,    FR_V,    FR_Z,                               FR_Q,    FR_W,    FR_U,    FR_O,    FR_Y,    KC_NO,
+     KC_TAB,  FR_F,    FR_L,    FR_H,    FR_V,    FR_Z,                               FR_Q,    FR_W,    FR_U,    FR_O,    FR_Y,    COLUMN,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      FN,      FR_S,    FR_R,    FR_N,    FR_T,    FR_K,                               FR_C,    FR_D,    FR_E,    FR_A,    FR_I,    KC_ENT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_NO,   FR_X,    KC_NO,   FR_B,    FR_M,    FR_J,    KC_LALT,          FN,      FR_P,    FR_G,    KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     KC_NO,   FR_X,    QUOTES,  FR_B,    FR_M,    FR_J,    KC_LALT,          FN,      FR_P,    FR_G,    S_COMMA, S_DOT,   S_SLASH, S_MINUS,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     KC_LGUI, KC_LCTL, KC_SPC,                    FN,      KC_LSFT, KC_NO
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -183,6 +189,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case COMMA:
       SHIFT_NO(FR_COMM, FR_MINS);
+      break;
+
+    case S_SLASH:
+      SHIFT_NO(FR_SLSH, FR_QUES);
+      break;
+    case S_DOT:
+      SHIFT_NO(FR_DOT, FR_RABK);
+      break;
+    case S_COMMA:
+      SHIFT_NO(FR_COMM, FR_LABK);
+      break;
+    case S_MINUS:
+      SHIFT_NO(FR_MINS, FR_UNDS);
       break;
 
     case PLUS_EQ:
